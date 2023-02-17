@@ -1,91 +1,62 @@
-import Image from 'next/image'
+'use client'; 
+
 import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+import { Form, Field } from "react-final-form";
+import TextInput from './components/TextInput';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+interface IFromsValues {
+  email?: string;
+  password?: string;
+};
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+const onSubmit = async (values: IFromsValues) => {
+  await sleep(300);
+  window.alert(JSON.stringify(values, undefined, 2));
+};
+
+const Home: React.FC = () => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <div className=' flex flex-col justify-center w-80 items-center px-6 py-6 border-slate-500 shadow-lg bg-white rounded-lg'>
+      <h3 className='text-left w-full pb-6 text-gray-500 font-semibold'>SIGN IN</h3>
+      <Form
+        onSubmit={onSubmit}
+        validate={ values => {
+          const errors: Record<string, string> = {};
+          if (!values.email) {
+            errors.email = 'Required'
+          }
+          if (!values.password) {
+            errors.password = 'Required'
+          }
+          return errors;
+        }}
+        render={({ handleSubmit, form, submitting, values }) => (
+          <form className='flex flex-col justify-start items-start w-full text-sm' onSubmit={handleSubmit}>
+            <div className='w-full pb-2'>
+              <label className='text-gray-500'>Email</label>
+              <Field<string>
+                name='email'
+                component={TextInput}
+                placeholder='Email...'
+              />
+            </div>
+            <div className='w-full'>
+              <label className='text-gray-500 text-xs'>Password</label>
+              <Field<string>
+                name='Password'
+                component={TextInput}
+                placeholder='Password...'
+              />
+            </div>
+          </form>
+        )}
+      />
+    </div>
   )
 }
+
+export default Home;
