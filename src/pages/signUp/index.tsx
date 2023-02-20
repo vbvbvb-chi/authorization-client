@@ -1,12 +1,8 @@
-'use client'; 
-
-import { Inter } from '@next/font/google'
 import Link from 'next/link';
 import { Form, Field } from "react-final-form";
-import Button from './components/Button';
-import CheckboxInput from './components/CheckboxInput';
-import InputWrapper from './components/InputWrapper';
-import TextInput from './components/TextInput';
+import Button from '../../app/components/Button';
+import InputWrapper from '../../app/components/InputWrapper';
+import TextInput from '../../app/components/TextInput';
 
 interface IFormsValues {
   email?: string;
@@ -21,10 +17,10 @@ const onSubmit = async (values: IFormsValues) => {
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
-const Home: React.FC = () => {
+const signUp: React.FC = () => {
   return (
     <div className='select-none flex flex-col justify-center w-80 text-gray-500 items-center px-6 py-6 border-slate-500 shadow-lg bg-white rounded-lg'>
-      <h3 className='text-left w-full pb-6 font-semibold'>LOGIN</h3>
+      <h3 className='text-left w-full pb-6 font-semibold'>SIGN UP</h3>
       <Form
         onSubmit={onSubmit}
         initialValues={{
@@ -62,19 +58,11 @@ const Home: React.FC = () => {
                 )}
               </Field>
             </div>
-            <div className='pb-6'>
-              <Field<boolean>
-                name='rememberMe'
-                component={CheckboxInput}
-                type="checkbox"
-              />
-              <label className='text-gray-500 pl-1'>Remember me?</label>
-            </div>
             <Button
               disabled={submitting || pristine}
               type="submit"
             > 
-              LOGIN
+              SIGN UP
             </Button>
           </form>
         )}
@@ -83,9 +71,9 @@ const Home: React.FC = () => {
         <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
         <span className="absolute px-3 font-normal -translate-x-1/2 bg-white left-1/2">OR</span>
       </div>
-      <p className='text-sm'>Need an accaunt? <Link className='border border-x-white border-y-white border-b-gray-500' href="/signUp">SIGN UP</Link></p> 
+      <p className='text-sm'>Already a user? <Link className='border border-x-white border-y-white border-b-gray-500' href="/">LOGIN</Link></p> 
     </div>
   )
 }
 
-export default Home;
+export default signUp;
