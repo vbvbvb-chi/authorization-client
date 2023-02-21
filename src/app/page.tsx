@@ -1,6 +1,5 @@
 'use client'; 
 
-import { Inter } from '@next/font/google'
 import Link from 'next/link';
 import { Form, Field } from "react-final-form";
 import Button from './components/Button';
@@ -13,6 +12,8 @@ interface IFormsValues {
   password?: string;
   rememberMe?: boolean;
 };
+
+
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -83,7 +84,7 @@ const Home: React.FC = () => {
         <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
         <span className="absolute px-3 font-normal -translate-x-1/2 bg-white left-1/2">OR</span>
       </div>
-      <p className='text-sm'>Need an accaunt? <Link className='border border-x-white border-y-white border-b-gray-500' href="/signUp">SIGN UP</Link></p> 
+      <p className='text-sm'>Need an accaunt? <Link className='border border-x-white border-y-white border-b-gray-500' href="/SignUp">SIGN UP</Link></p> 
     </div>
   )
 }

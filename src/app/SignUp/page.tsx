@@ -1,3 +1,5 @@
+"use client"
+
 import Link from 'next/link';
 import { Form, Field } from "react-final-form";
 import Button from '../../app/components/Button';
@@ -49,7 +51,7 @@ const signUp: React.FC = () => {
                 )}
               </Field>
             </div>
-            <div className='pb-2 w-full'>
+            <div className='pb-4 w-full'>
               <Field name='password'>
                 {({input, meta}) => (
                   <InputWrapper label='Password' input={input} meta={meta}>
