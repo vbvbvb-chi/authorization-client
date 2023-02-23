@@ -1,3 +1,6 @@
+'use client';
+
+import { Application } from './containers/Application';
 import './globals.css'
 
 export default function RootLayout({
@@ -12,7 +15,9 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className='flex justify-center items-center h-screen bg-teal-100'>{children}</body>
+      <Application>
+        <body className='flex justify-center items-center h-screen bg-teal-100'>{children}</body>
+      </Application>
     </html>
   )
 }
